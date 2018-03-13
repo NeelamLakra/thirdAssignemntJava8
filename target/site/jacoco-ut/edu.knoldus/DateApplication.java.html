@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DateApplication.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-assignment-03</a> &gt; <a href="index.source.html" class="el_package">edu.knoldus</a> &gt; <span class="el_source">DateApplication.java</span></div><h1>DateApplication.java</h1><pre class="source lang-java linenums">package edu.knoldus;
+
+
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc" id="L9">public class DateApplication {</span>
+
+    public static void main(String[] args) {
+
+<span class="nc" id="L13">        System.out.println(getDaysOfBirthday(&quot;1994-11-21&quot;));</span>
+<span class="nc" id="L14">        System.out.println(getTimeZoneValue(&quot;Africa/Algiers&quot;));</span>
+<span class="nc" id="L15">        System.out.println(mahtmaGandhiLivedInSeconds());</span>
+<span class="nc" id="L16">        System.out.println(findingLeapYear());</span>
+<span class="nc" id="L17">    }</span>
+
+    /**
+     * Returning The list of all days of my birthday.
+     * @param myFirstBirthDate:.
+     * @return List of Days
+     */
+    public static List&lt;DayOfWeek&gt; getDaysOfBirthday(String myFirstBirthDate) {
+<span class="fc" id="L25">        List&lt;DayOfWeek&gt; days = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">        LocalDate firstDate = LocalDate.parse(myFirstBirthDate);</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        while (firstDate.getYear() &lt;= LocalDate.now().getYear()) {</span>
+<span class="fc" id="L28">            days.add(firstDate.getDayOfWeek());</span>
+<span class="fc" id="L29">            firstDate = firstDate.plusYears(1);</span>
+        }
+<span class="fc" id="L31">        return days;</span>
+    }
+
+    /**
+     * Finding Time Zone Value.
+     * @param timeZone
+     * @return: Finding the zone time.
+     */
+    public static ZonedDateTime getTimeZoneValue(String timeZone) {
+<span class="nc" id="L40">        return ZonedDateTime.now(ZoneId.of(timeZone));</span>
+    }
+
+    /**
+     * Finding the life of Mahatma Gandhi in second.
+     * @return time in second.
+     */
+    public static Long mahtmaGandhiLivedInSeconds() {
+
+<span class="fc" id="L49">        LocalDateTime birthDate = LocalDateTime.of(1869, 10, 2, 0, 0);</span>
+<span class="fc" id="L50">        LocalDateTime deathDate = LocalDateTime.of(1948, 1, 30, 0, 0);</span>
+<span class="fc" id="L51">        return ChronoUnit.SECONDS.between(birthDate, deathDate);</span>
+    }
+
+    /**
+     * Finding Leap Year.
+     * @return list of leap year.
+     */
+    public static List&lt;Integer&gt; findingLeapYear() {
+
+
+<span class="fc" id="L61">        LocalDate startingYear = LocalDate.parse(&quot;1991-01-01&quot;);</span>
+<span class="fc" id="L62">        List&lt;Integer&gt; lisOfLeapYears = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        while (startingYear.getYear() &lt;= LocalDate.now().getYear()) {</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            if (startingYear.isLeapYear()) {</span>
+<span class="fc" id="L65">                lisOfLeapYears.add(startingYear.getYear());</span>
+            }
+<span class="fc" id="L67">            startingYear = startingYear.plusYears(1);</span>
+
+        }
+<span class="fc" id="L70">        return lisOfLeapYears;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
